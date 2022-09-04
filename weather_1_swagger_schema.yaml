@@ -1,0 +1,99 @@
+openapi: 3.0.3
+info:
+  title: Swagger getWeather - OpenAPI 3.0
+  description: getWeather api
+  termsOfService: http://swagger.io/terms/
+  contact:
+    email: apiteam@swagger.io
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.11
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: https://petstore3.swagger.io/api/v3
+tags:
+  - name: weather
+    description: weather service
+    externalDocs:
+      description: Find out more
+      url: http://swagger.io
+paths:
+  /:
+    post:
+      tags:
+        - weather
+      summary: get weather
+      description: get weather
+      operationId: get weather
+      requestBody:
+        description: Create a new weather request
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Weather'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Weather'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Weather'
+        required: true
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Weather'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Weather'
+        '405':
+          description: Invalid input
+
+components:
+  schemas:
+    Weather:
+      required:
+        - lat
+        - lon
+        - date
+      type: object
+      properties:
+        lat:
+          type: string
+          example: 55.7483
+        lon:
+          type: string
+          example: 37.6171
+        date:
+          type: string
+          example: 2021-07-04 23:48:17
+      xml:
+        name: weather
+    ApiResponse:
+      type: string
+      properties:
+        city:
+          type: string
+        weather_des:
+          type: string
+        weather_temp:
+          type: string
+        weather_wind:
+          type: string
+      xml:
+        name: '##default'
+  requestBodies:
+    Weather:
+      description: weather object that appears after request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Weather'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Weather'
