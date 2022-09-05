@@ -14,3 +14,4 @@
 
 $router->get('/', 'WeatherController@index');
 $router->post('/', 'WeatherController@getWeather');
+$router->get('/delivery', 'DeliveryController@getDelivery');
